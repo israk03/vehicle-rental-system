@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import initDB from "./config/db";
 import logger from "./middleware/logger";
+import { authRoutes } from "./modules/auth/auth.routes";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get("/", (req: Request, res: Response)=>{
 })
 
 // API routes
+app.use("/api/v1/auth", authRoutes);
 
 
 
