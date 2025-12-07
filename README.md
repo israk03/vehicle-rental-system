@@ -453,6 +453,8 @@ git push origin main
 
 ## 📁 Project Structure
 
+```
+
 vehicle-rental-system/
 ├── src/
 │   ├── app.ts                 # Express app configuration
@@ -489,6 +491,8 @@ vehicle-rental-system/
 ├── tsconfig.json
 ├── vercel.json               # Vercel deployment config
 └── README.md
+
+```
 ```
 
 ## 🔧 Scripts
