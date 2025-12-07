@@ -4,7 +4,7 @@ A robust backend API for managing a vehicle rental system with user authenticati
 
 ## 🌐 Live API
 
-**Base URL:** `https://your-project-name.vercel.app`
+**Base URL:** `https://vehicle-rental-system-sooty.vercel.app/`
 
 ## 📋 Table of Contents
 
@@ -507,9 +507,10 @@ npm start            # Run compiled code
 
 # Deployment
 npm run vercel-build # Vercel build command
-```
 
-## ⚠️ Error Handling
+
+# ⚠️ Error Handling
+```
 
 ### Common HTTP Status Codes
 
@@ -553,7 +554,4 @@ npm run vercel-build # Vercel build command
 
 ---
 
-**Built with ❤️ for Apollo Level 2 Web Development Course**
-```
 
-***
