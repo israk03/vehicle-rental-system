@@ -2,12 +2,12 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import { NextFunction, Request, Response } from "express"
 import config from "../config";
 
-const auth = (...roles: string[])=>{
-    return async (req: Request, res: Response, next: NextFunction) =>{
+const auth = (...roles: string[]) => {
+    return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const authHeader = req.headers.authorization;
 
-            if(!authHeader || !authHeader.startsWith("Bearer ")){
+            if (!authHeader || !authHeader.startsWith("Bearer ")) {
                 return res.status(401).json({
                     success: false,
                     message: "Unauthorized - No token provided"
@@ -15,21 +15,24 @@ const auth = (...roles: string[])=>{
             }
 
             const token = authHeader.split(" ")[1];
-
             const secret = config.jwt_secret as string;
 
-            const decoded = jwt.verify(token as string, secret) as JwtPayload;
+            // Decode and cast to the extended type
+            const decoded = jwt.verify(token as string, secret) as JwtPayload & {
+                id: number;
+                email: string;
+                role: string;
+            };
 
             req.user = decoded;
 
             // check role authorization
-            if(roles.length && !roles.includes(decoded.role)){
+            if (roles.length && !roles.includes(decoded.role)) {
                 return res.status(403).json({
                     success: false,
                     message: "Forbidden"
                 })
             }
-
 
             next();
             
@@ -38,7 +41,6 @@ const auth = (...roles: string[])=>{
                 success: false,
                 message: "Unauthorized - Invalid token."
             });
-            
         }
     };
 };

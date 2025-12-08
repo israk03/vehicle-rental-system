@@ -1,5 +1,15 @@
-import { Request, Response } from "express";
+import { Request as ExpressRequest, Response } from "express";
 import { userServices } from "./user.service";
+import { JwtPayload } from 'jsonwebtoken';
+
+// Extend Request locally
+interface Request extends ExpressRequest {
+  user?: JwtPayload & {
+    id: number;
+    email: string;
+    role: string;
+  };
+}
 
 //!----------------------GET ALL USERS
 const getAllUsers = async(req: Request, res: Response)=>{
